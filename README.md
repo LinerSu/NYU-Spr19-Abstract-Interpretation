@@ -11,3 +11,6 @@ This is the optional project for Abstract Interpretation applied to Verification
 - Constancy abstract domain: Self-defined.
 - Congruence abstract domain: Self-defined.
 - Octagon abstract domain: [Apron library](http://apron.cri.ensmp.fr/library/).
+
+## Ref
+- [Course Page](https://cs.nyu.edu/courses/spring19/CSCI-GA.3140-001/)
