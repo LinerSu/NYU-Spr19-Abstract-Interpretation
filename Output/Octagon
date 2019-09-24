@@ -1,0 +1,508 @@
+*** octagon domain
+# using the abstract interpreter:
+
+<l1: bottom ; l2: top ; ff; l0: top >                         Prog:
+<l1: bottom ; l2: top ; ff; l0: top >                           l1: ; 
+                                                             l2: 
+<l1: bottom; l2: [|x-42.>=0; -x+42.>=0|]; ff; l0: top>       Prog:
+<l1: bottom; l2: [|x-42.>=0; -x+42.>=0|]; ff; l0: top>          l1: x = 42; 
+                                                             l2: 
+Error: no break allowed out of a program
+top
+bottom
+top
+<l1: ; l2: ; ff; l0: >                                       Prog:
+top
+bottom
+top
+<l1: ; l2: ; tt; l2: >                                          l1: break; 
+                                                             l2: 
+Error: no break allowed out of a program
+top
+bottom
+top
+<l1: ; l3: ; ff; l0: >                                       Prog:
+top
+bottom
+top
+<l1: ; l2: ; tt; l3: >                                          l1: break; 
+bottom
+bottom
+bottom
+<l2: ; l3: ; ff; l0: >                                          l2: x = 7; 
+                                                             l3: 
+Error: no break allowed out of a program
+[|x-7.>=0; -x+7.>=0|]
+bottom
+top
+<l1: ; l4: ; ff; l0: >                                       Prog:
+bottom
+[|x-7.>=0; -x+7.>=0|]
+top
+<l1: ; l2: ; ff; l0: >                                          l1: x = 7; 
+bottom
+[|x-7.>=0; -x+7.>=0|]
+[|x-7.>=0; -x+7.>=0|]
+<l2: ; l3: ; ff; l0: >                                          l2: ; 
+[|x-7.>=0; -x+7.>=0|]
+bottom
+[|x-7.>=0; -x+7.>=0|]
+<l3: ; l4: ; tt; l4: >                                          l3: break; 
+                                                             l4: 
+bottom
+top
+top
+<l1: ; l1: ; ff; l0: >                                       Prog:
+bottom
+top
+top
+<l1: ; l1: ; ff; l0: >                                          Stmtlist: {
+                                                                } 
+                                                             l1: 
+bottom
+[|x+70.>=0; -x-70.>=0|]
+top
+<l1: ; l2: ; ff; l0: >                                       Prog:
+bottom
+[|x+70.>=0; -x-70.>=0|]
+top
+<l1: ; l2: ; ff; l0: >                                          l1: x = (((0 - 10) - 20) - (0 - 40)); 
+                                                             l2: 
+bottom
+[|x-1.>=0; -x+1.>=0; -x+y-1.>=0; x+y-3.>=0; y-2.>=0; -x-y+3.>=0; x-y+1.>=0;
+  -y+2.>=0|]
+top
+<l1: ; l3: ; ff; l0: >                                       Prog:
+bottom
+[|x-1.>=0; -x+1.>=0|]
+top
+<l1: ; l2: ; ff; l0: >                                          l1: x = 1; 
+bottom
+[|x-1.>=0; -x+1.>=0; -x+y-1.>=0; x+y-3.>=0; y-2.>=0; -x-y+3.>=0; x-y+1.>=0;
+  -y+2.>=0|]
+[|x-1.>=0; -x+1.>=0|]
+<l2: ; l3: ; ff; l0: >                                          l2: y = 2; 
+                                                             l3: 
+bottom
+[|x-10.>=0; -x+10.>=0; -x+y-10.>=0; x+y-30.>=0; y-20.>=0; -x-y+30.>=0;
+  x-y+10.>=0; -y+20.>=0|]
+top
+<l1: ; l4: ; ff; l0: >                                       Prog:
+bottom
+[|x-10.>=0; -x+10.>=0; -x+y-10.>=0; x+y-30.>=0; y-20.>=0; -x-y+30.>=0;
+  x-y+10.>=0; -y+20.>=0|]
+top
+<l1: ; l4: ; ff; l0: >                                          Stmtlist: {
+bottom
+[|x-10.>=0; -x+10.>=0|]
+top
+<l1: ; l2: ; ff; l0: >                                             l1: x = 10; 
+bottom
+[|x-10.>=0; -x+10.>=0|]
+[|x-10.>=0; -x+10.>=0|]
+<l2: ; l3: ; ff; l0: >                                             l2: ; 
+bottom
+[|x-10.>=0; -x+10.>=0; -x+y-10.>=0; x+y-30.>=0; y-20.>=0; -x-y+30.>=0;
+  x-y+10.>=0; -y+20.>=0|]
+[|x-10.>=0; -x+10.>=0|]
+<l3: ; l4: ; ff; l0: >                                             l3: y = 20; 
+                                                                } 
+                                                             l4: 
+bottom
+top
+top
+<l1: ; l3: ; ff; l0: >                                       Prog:
+bottom
+top
+top
+<l1: ; l3: ; ff; l0: >                                          (if l1: ((1 - 2) < ((3 - 4) - 5))
+bottom
+bottom
+bottom
+<l2: ; l3: ; ff; l0: >                                             l2: x = (0 - x); ) 
+                                                             l3: 
+bottom
+[|x-1.>=0|]
+top
+<l1: ; l10: ; ff; l0: >                                      Prog:
+bottom
+[|x-1.>=0|]
+top
+<l1: ; l10: ; ff; l0: >                                         (if l1: (x < 1)
+bottom
+[|x-1.>=0; -x+6.>=0|]
+[|-x>=0|]
+<l2: ; l10: ; ff; l0: >                                            (if l2: (x < 0)
+bottom
+[|x-1.>=0; -x+1.>=0|]
+[|-x-1.>=0|]
+<l3: ; l10: ; ff; l0: >                                               l3: x = 1; 
+                                                                    else 
+bottom
+[|x-6.>=0; -x+6.>=0|]
+[|x>=0; -x>=0|]
+<l4: ; l10: ; ff; l0: >                                               (if l4: (x < 0)
+bottom
+bottom
+bottom
+<l5: ; l10: ; ff; l0: >                                                  Stmtlist: {
+bottom
+bottom
+bottom
+<l5: ; l6: ; ff; l0: >                                                      l5: x = 2; 
+bottom
+bottom
+bottom
+<l6: ; l10: ; ff; l0: >                                                     l6: x = 3; 
+                                                                         } 
+                                                                       else 
+bottom
+[|x-6.>=0; -x+6.>=0|]
+[|x>=0; -x>=0|]
+<l7: ; l10: ; ff; l0: >                                                  Stmtlist: {
+bottom
+[|x-4.>=0; -x+4.>=0|]
+[|x>=0; -x>=0|]
+<l7: ; l8: ; ff; l0: >                                                      l7: x = 4; 
+bottom
+[|x-5.>=0; -x+5.>=0|]
+[|x-4.>=0; -x+4.>=0|]
+<l8: ; l9: ; ff; l0: >                                                      l8: x = 5; 
+bottom
+[|x-6.>=0; -x+6.>=0|]
+[|x-5.>=0; -x+5.>=0|]
+<l9: ; l10: ; ff; l0: >                                                     l9: x = 6; 
+                                                                         } ) ) ) 
+                                                             l10: 
+bottom
+[|x-1.>=0|]
+top
+<l1: ; l2: ; ff; l0: >                                       Prog:
+bottom
+[|x-1.>=0|]
+top
+<l1: ; l2: ; ff; l0: >                                          (while l1: (x < 1)
+bottom
+[|-x>=0|]
+[|-x>=0|]
+<l2: ; l1: ; ff; l0: >                                             Stmtlist: {
+                                                                   } ) 
+                                                             l2: 
+bottom
+[|x-1.>=0|]
+top
+<l1: ; l3: ; ff; l0: >                                       Prog:
+bottom
+[|x-1.>=0|]
+top
+<l1: ; l3: ; ff; l0: >                                          (while l1: (x < 1)
+bottom
+[|-x+1.>=0|]
+[|-x>=0|]
+<l2: ; l1: ; ff; l0: >                                             l2: x = (x + 1); ) 
+                                                             l3: 
+bottom
+[|x-10.>=0|]
+top
+<l1: ; l3: ; ff; l0: >                                       Prog:
+bottom
+[|x-10.>=0|]
+top
+<l1: ; l3: ; ff; l0: >                                          (while l1: (x < 10)
+bottom
+[|-x+10.>=0|]
+[|-x+9.>=0|]
+<l2: ; l1: ; ff; l0: >                                             l2: x = (x + 1); ) 
+                                                             l3: 
+bottom
+bottom
+top
+<l1: ; l4: ; ff; l0: >                                       Prog:
+bottom
+bottom
+top
+<l1: ; l3: ; ff; l0: >                                          (while l1: (0 < 1)
+bottom
+top
+top
+<l2: ; l1: ; ff; l0: >                                             Stmtlist: {
+bottom
+top
+top
+<l2: ; l1: ; ff; l0: >                                                l2: x = (x - 1); 
+                                                                   } ) 
+bottom
+bottom
+bottom
+<l3: ; l4: ; ff; l0: >                                          l3: x = 42; 
+                                                             l4: 
+bottom
+bottom
+top
+<l1: ; l2: ; ff; l0: >                                       Prog:
+bottom
+bottom
+top
+<l1: ; l2: ; ff; l0: >                                          (while l1: (0 < 1)
+bottom
+top
+top
+<l2: ; l1: ; ff; l0: >                                             Stmtlist: {
+                                                                   } ) 
+                                                             l2: 
+bottom
+[|-x+1.>=0|]
+top
+<l1: ; l7: ; ff; l0: >                                       Prog:
+bottom
+top
+top
+<l1: ; l2: ; ff; l0: >                                          l1: x = (x - 1); 
+bottom
+[|-x+1.>=0|]
+top
+<l2: ; l6: ; ff; l0: >                                          (while l2: (0 < 1)
+[|-x+1.>=0|]
+[|x-2.>=0|]
+top
+<l3: ; l2: ; tt; l6: >                                             Stmtlist: {
+bottom
+top
+top
+<l3: ; l4: ; ff; l0: >                                                l3: x = (x - 1); 
+[|-x+1.>=0|]
+[|x-2.>=0|]
+top
+<l4: ; l2: ; tt; l6: >                                                (if l4: (x < 2)
+[|-x+1.>=0|]
+bottom
+[|-x+1.>=0|]
+<l5: ; l2: ; tt; l6: >                                                   l5: break; ) 
+                                                                   } ) 
+bottom
+[|-x+1.>=0|]
+[|-x+1.>=0|]
+<l6: ; l7: ; ff; l0: >                                          l6: ; 
+                                                             l7: 
+bottom
+bottom
+top
+<l1: ; l6: ; ff; l0: >                                       Prog:
+bottom
+[|x+10.>=0; -x-10.>=0|]
+top
+<l1: ; l2: ; ff; l0: >                                          l1: x = (0 - 10); 
+bottom
+bottom
+[|x+10.>=0; -x-10.>=0|]
+<l2: ; l6: ; ff; l0: >                                          (while l2: (x < 0)
+bottom
+[|x+10.>=0; -x-10.>=0|]
+[|x+10.>=0; -x-10.>=0|]
+<l3: ; l2: ; ff; l0: >                                             (if l3: (x < 0)
+bottom
+[|x+10.>=0; -x-10.>=0|]
+[|x+10.>=0; -x-10.>=0|]
+<l4: ; l2: ; ff; l0: >                                                (if l4: (0 < x)
+bottom
+bottom
+bottom
+<l5: ; l2: ; ff; l0: >                                                   l5: x = (0 - x); ) ) ) 
+                                                             l6: 
+bottom
+[|x-10.>=0; -x+10.>=0|]
+top
+<l1: ; l7: ; ff; l0: >                                       Prog:
+bottom
+[|x+10.>=0; -x-10.>=0|]
+top
+<l1: ; l2: ; ff; l0: >                                          l1: x = (0 - 10); 
+bottom
+[|x+11.>=0; -x-11.>=0|]
+[|x+10.>=0; -x-10.>=0|]
+<l2: ; l5: ; ff; l0: >                                          (while l2: (x < 0)
+[|x+11.>=0; -x-11.>=0|]
+bottom
+[|x+10.>=0; -x-10.>=0|]
+<l3: ; l2: ; tt; l5: >                                             Stmtlist: {
+bottom
+[|x+11.>=0; -x-11.>=0|]
+[|x+10.>=0; -x-10.>=0|]
+<l3: ; l4: ; ff; l0: >                                                l3: x = (x - 1); 
+[|x+11.>=0; -x-11.>=0|]
+bottom
+[|x+11.>=0; -x-11.>=0|]
+<l4: ; l2: ; tt; l5: >                                                l4: break; 
+                                                                   } ) 
+bottom
+[|x+11.>=0; -x-11.>=0|]
+[|x+11.>=0; -x-11.>=0|]
+<l5: ; l6: ; ff; l0: >                                          l5: ; 
+bottom
+[|x-10.>=0; -x+10.>=0|]
+[|x+11.>=0; -x-11.>=0|]
+<l6: ; l7: ; ff; l0: >                                          l6: x = 10; 
+                                                             l7: 
+bottom
+[|x-100.>=0; -x+100.>=0|]
+top
+<l1: ; l8: ; ff; l0: >                                       Prog:
+bottom
+[|x>=0; -x>=0|]
+top
+<l1: ; l2: ; ff; l0: >                                          l1: x = 0; 
+bottom
+[|x>=0; -x>=0|]
+[|x>=0; -x>=0|]
+<l2: ; l6: ; ff; l0: >                                          (while l2: (x < 0)
+bottom
+bottom
+bottom
+<l3: ; l2: ; ff; l0: >                                             Stmtlist: {
+bottom
+bottom
+bottom
+<l3: ; l5: ; ff; l0: >                                                (while l3: (x < 0)
+bottom
+bottom
+bottom
+<l4: ; l3: ; ff; l0: >                                                   l4: x = (x - 1); ) 
+bottom
+bottom
+bottom
+<l5: ; l2: ; ff; l0: >                                                l5: x = 10; 
+                                                                   } ) 
+bottom
+[|x>=0; -x>=0|]
+[|x>=0; -x>=0|]
+<l6: ; l7: ; ff; l0: >                                          l6: ; 
+bottom
+[|x-100.>=0; -x+100.>=0|]
+[|x>=0; -x>=0|]
+<l7: ; l8: ; ff; l0: >                                          l7: x = 100; 
+                                                             l8: 
+bottom
+[|x-100.>=0; -x+100.>=0|]
+top
+<l1: ; l8: ; ff; l0: >                                       Prog:
+bottom
+[|x>=0; -x>=0|]
+top
+<l1: ; l2: ; ff; l0: >                                          l1: x = 0; 
+bottom
+[|x>=0; -x>=0|]
+[|x>=0; -x>=0|]
+<l2: ; l6: ; ff; l0: >                                          (while l2: (x < 0)
+bottom
+bottom
+bottom
+<l3: ; l2: ; tt; l6: >                                             Stmtlist: {
+bottom
+bottom
+bottom
+<l3: ; l5: ; ff; l0: >                                                (while l3: (x < 0)
+bottom
+bottom
+bottom
+<l4: ; l3: ; ff; l0: >                                                   l4: x = (x - 1); ) 
+bottom
+bottom
+bottom
+<l5: ; l2: ; tt; l6: >                                                l5: break; 
+                                                                   } ) 
+bottom
+[|x>=0; -x>=0|]
+[|x>=0; -x>=0|]
+<l6: ; l7: ; ff; l0: >                                          l6: ; 
+bottom
+[|x-100.>=0; -x+100.>=0|]
+[|x>=0; -x>=0|]
+<l7: ; l8: ; ff; l0: >                                          l7: x = 100; 
+                                                             l8: 
+bottom
+[|x-3.>=0|]
+top
+<l1: ; l7: ; ff; l0: >                                       Prog:
+bottom
+top
+top
+<l1: ; l2: ; ff; l0: >                                          l1: x = (x - 1); 
+bottom
+[|x-3.>=0|]
+top
+<l2: ; l6: ; ff; l0: >                                          (while l2: (0 < 1)
+[|x-3.>=0|]
+[|-x+2.>=0|]
+top
+<l3: ; l2: ; tt; l6: >                                             Stmtlist: {
+bottom
+top
+top
+<l3: ; l4: ; ff; l0: >                                                l3: x = (x - 1); 
+[|x-3.>=0|]
+[|-x+2.>=0|]
+top
+<l4: ; l2: ; tt; l6: >                                                (if l4: (2 < x)
+[|x-3.>=0|]
+bottom
+[|x-3.>=0|]
+<l5: ; l2: ; tt; l6: >                                                   l5: break; ) 
+                                                                   } ) 
+bottom
+[|x-3.>=0|]
+[|x-3.>=0|]
+<l6: ; l7: ; ff; l0: >                                          l6: ; 
+                                                             l7: 
+bottom
+[|x>=0; -x>=0|]
+top
+<l1: ; l4: ; ff; l0: >                                       Prog:
+bottom
+[|x-10.>=0; -x+10.>=0|]
+top
+<l1: ; l2: ; ff; l0: >                                          l1: x = 10; 
+bottom
+[|x>=0; -x>=0|]
+[|x>=0; -x+10.>=0|]
+<l2: ; l4: ; ff; l0: >                                          (while l2: (x > 0)
+bottom
+[|x>=0; -x+9.>=0|]
+[|x-1.>=0; -x+10.>=0|]
+<l3: ; l2: ; ff; l0: >                                             l3: x = (x - 1); ) 
+                                                             l4: 
+bottom
+top
+top
+<l1: ; l4: ; ff; l0: >                                       Prog:
+bottom
+top
+top
+<l1: ; l4: ; ff; l0: >                                          (while l1: (0 < 1)
+top
+bottom
+top
+<l2: ; l1: ; tt; l4: >                                             Stmtlist: {
+top
+bottom
+top
+<l2: ; l3: ; tt; l4: >                                                l2: break; 
+bottom
+bottom
+bottom
+<l3: ; l1: ; ff; l0: >                                                l3: x = 1; 
+                                                                   } ) 
+                                                             l4: 
+bottom
+bottom
+top
+<l1: ; l3: ; ff; l0: >                                       Prog:
+bottom
+bottom
+top
+<l1: ; l3: ; ff; l0: >                                          (while l1: (0 < 1)
+bottom
+top
+top
+<l2: ; l1: ; ff; l0: >                                             l2: x = (x + 2); ) 
+                                                             l3: 
+# end
